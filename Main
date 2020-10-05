@@ -1,0 +1,40 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(no_of_coins(get_change()));
+    }
+
+    static int get_change(){
+        Scanner input = new Scanner(System.in);
+        float user_change;
+        do{
+            System.out.print("Change owed: ");
+            user_change = input.nextFloat();
+        } while (user_change <= 0f);
+        return Math.round(user_change *100);
+    }
+
+    static int no_of_coins(int change){
+        // coins are either 25c, 10c, 5c and 1c
+        int counter = 0;
+        do{
+            if (change > 0) {
+                counter ++;
+                if (change >= 25) {
+                    change = change - 25;
+                } else if (change >= 10){
+                    change = change - 10;
+                } else if (change >= 5) {
+                    change = change - 5;
+                } else {
+                    change = change - 1;
+                }
+            }
+        } while (change > 0);
+        return counter;
+    }
+
+}
